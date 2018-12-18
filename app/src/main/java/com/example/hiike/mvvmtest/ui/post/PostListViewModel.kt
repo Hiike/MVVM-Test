@@ -5,13 +5,15 @@ import android.view.View
 import com.example.hiike.mvvmtest.R
 import com.example.hiike.mvvmtest.base.BaseViewModel
 import com.example.hiike.mvvmtest.model.Post
+import com.example.hiike.mvvmtest.model.PostDao
 import com.example.hiike.mvvmtest.network.PostApi
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class PostListViewModel: BaseViewModel() {
+class PostListViewModel(private val postDao: PostDao) : BaseViewModel() {
     @Inject
     lateinit var postApi: PostApi
 
@@ -32,7 +34,17 @@ class PostListViewModel: BaseViewModel() {
     }
 
     private fun loadPosts() {
-        subscription = postApi.getPosts()
+        subscription = Observable.fromCallable { postDao.all }
+                .concatMap { dbPostList ->
+                    if (dbPostList.isEmpty()) {
+                        postApi.getPosts().concatMap { apiPostList ->
+                            postDao.insertAll(*apiPostList.toTypedArray())
+                            Observable.just(apiPostList)
+                        }
+                    } else {
+                        Observable.just(dbPostList)
+                    }
+                }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { onRetrievePostListStart() }

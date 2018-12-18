@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.example.hiike.mvvmtest.R
 import com.example.hiike.mvvmtest.databinding.ActivityPostListBinding
+import com.example.hiike.mvvmtest.injection.ViewModelFactory
 
 class PostListActivity: AppCompatActivity() {
     private lateinit var binding: ActivityPostListBinding
@@ -25,7 +26,8 @@ class PostListActivity: AppCompatActivity() {
         binding.postList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.postList.adapter = this.adapter
 
-        viewModel = ViewModelProviders.of(this).get(PostListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, ViewModelFactory(this))
+                .get(PostListViewModel::class.java)
         viewModel.errorMessage.observe(this, Observer { errorMessage ->
             if (errorMessage != null) {
                 showError(errorMessage)
