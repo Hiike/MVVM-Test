@@ -1,8 +1,6 @@
 package com.example.hiike.mvvmtest.ui.post
 
 import android.arch.lifecycle.MutableLiveData
-import android.view.View
-import com.example.hiike.mvvmtest.R
 import com.example.hiike.mvvmtest.base.BaseViewModel
 import com.example.hiike.mvvmtest.model.Post
 import com.example.hiike.mvvmtest.model.PostDao
@@ -11,6 +9,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 import javax.inject.Inject
 
 class PostListViewModel(private val postDao: PostDao) : BaseViewModel() {
@@ -19,9 +18,8 @@ class PostListViewModel(private val postDao: PostDao) : BaseViewModel() {
 
     private lateinit var subscription: Disposable
 
-    val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
-    val errorMessage: MutableLiveData<Int> = MutableLiveData()
-    val errorClickListener = View.OnClickListener { loadPosts() }
+    val loadingVisible: MutableLiveData<Boolean> = MutableLiveData()
+    val errorRetrieve: MutableLiveData<Boolean> = MutableLiveData()
     val postList: MutableLiveData<List<Post>> = MutableLiveData()
 
     init {
@@ -33,7 +31,7 @@ class PostListViewModel(private val postDao: PostDao) : BaseViewModel() {
         subscription.dispose()
     }
 
-    private fun loadPosts() {
+    fun loadPosts() {
         subscription = Observable.fromCallable { postDao.all }
                 .concatMap { dbPostList ->
                     if (dbPostList.isEmpty()) {
@@ -51,25 +49,26 @@ class PostListViewModel(private val postDao: PostDao) : BaseViewModel() {
                 .doOnTerminate { onRetrievePostListFinish() }
                 .subscribe(
                         { result -> onRetrievePostListSuccess(result) },
-                        { onRetrievePostListError() }
+                        { error -> onRetrievePostListError(error) }
                 )
     }
 
     private fun onRetrievePostListStart() {
-        loadingVisibility.value = View.VISIBLE
-        errorMessage.value = null
+        loadingVisible.value = true
+        errorRetrieve.value = false
     }
 
     private fun onRetrievePostListFinish() {
-        loadingVisibility.value = View.GONE
+        loadingVisible.value = false
     }
 
     private fun onRetrievePostListSuccess(postList: List<Post>) {
         this.postList.value = postList
     }
 
-    private fun onRetrievePostListError() {
-        errorMessage.value = R.string.post_error
+    private fun onRetrievePostListError(error: Throwable) {
+        errorRetrieve.value = true
+        Timber.e(error)
     }
 
 }

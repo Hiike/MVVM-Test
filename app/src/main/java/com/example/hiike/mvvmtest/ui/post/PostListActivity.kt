@@ -28,9 +28,9 @@ class PostListActivity: AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this, ViewModelFactory(this))
                 .get(PostListViewModel::class.java)
-        viewModel.errorMessage.observe(this, Observer { errorMessage ->
-            if (errorMessage != null) {
-                showError(errorMessage)
+        viewModel.errorRetrieve.observe(this, Observer { errorRetrieve ->
+            if (errorRetrieve != null && errorRetrieve) {
+                showError(R.string.post_error)
             } else {
                 hideError()
             }
@@ -45,7 +45,7 @@ class PostListActivity: AppCompatActivity() {
 
     private fun showError(@StringRes errorMessage: Int) {
         errorSnackbar = Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_INDEFINITE)
-        errorSnackbar?.setAction(R.string.retry, viewModel.errorClickListener)
+        errorSnackbar?.setAction(R.string.retry) { viewModel.loadPosts() }
         errorSnackbar?.show()
     }
 
