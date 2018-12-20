@@ -1,12 +1,12 @@
 package com.example.hiike.mvvmtest.ui.post
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.hiike.mvvmtest.databinding.ItemPostBinding
 import com.example.hiike.mvvmtest.model.Post
 
-class PostListAdapter : RecyclerView.Adapter<PostListAdapter.ViewHolder>() {
+class PostListAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<PostListAdapter.ViewHolder>() {
     private lateinit var postList: List<Post>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,7 +28,7 @@ class PostListAdapter : RecyclerView.Adapter<PostListAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    class ViewHolder(private val binding: ItemPostBinding): RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemPostBinding): androidx.recyclerview.widget.RecyclerView.ViewHolder(binding.root) {
         private val viewModel = PostViewModel()
 
         fun bind(post: Post) {

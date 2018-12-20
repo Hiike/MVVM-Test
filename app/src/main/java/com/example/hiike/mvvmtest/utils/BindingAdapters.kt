@@ -1,9 +1,9 @@
 package com.example.hiike.mvvmtest.utils
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Observer
-import android.databinding.BindingAdapter
-import android.support.v7.app.AppCompatActivity
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.databinding.BindingAdapter
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
 import com.example.hiike.mvvmtest.utils.extension.getParentActivity

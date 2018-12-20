@@ -1,6 +1,6 @@
 package com.example.hiike.mvvmtest.ui.post
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.hiike.mvvmtest.base.BaseViewModel
 import com.example.hiike.mvvmtest.model.Post
 

@@ -1,6 +1,6 @@
 package com.example.hiike.mvvmtest.base
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import com.example.hiike.mvvmtest.injection.component.DaggerViewModelInjector
 import com.example.hiike.mvvmtest.injection.module.NetworkModule
 import com.example.hiike.mvvmtest.ui.post.PostListViewModel
