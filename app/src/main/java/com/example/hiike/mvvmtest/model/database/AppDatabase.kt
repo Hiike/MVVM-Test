@@ -1,7 +1,7 @@
 package com.example.hiike.mvvmtest.model.database
 
-import androidx.room.Database
-import androidx.room.RoomDatabase
+import android.arch.persistence.room.Database
+import android.arch.persistence.room.RoomDatabase
 import com.example.hiike.mvvmtest.model.Post
 import com.example.hiike.mvvmtest.model.PostDao
 

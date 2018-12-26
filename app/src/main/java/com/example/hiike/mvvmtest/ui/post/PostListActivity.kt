@@ -1,13 +1,13 @@
 package com.example.hiike.mvvmtest.ui.post
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.databinding.DataBindingUtil
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingUtil
 import android.os.Bundle
-import androidx.annotation.StringRes
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.support.annotation.StringRes
+import android.support.design.widget.Snackbar
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import com.example.hiike.mvvmtest.R
 import com.example.hiike.mvvmtest.databinding.ActivityPostListBinding
 import com.example.hiike.mvvmtest.injection.ViewModelFactory
@@ -23,7 +23,7 @@ class PostListActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_post_list)
-        binding.postList.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this, androidx.recyclerview.widget.LinearLayoutManager.VERTICAL, false)
+        binding.postList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.postList.adapter = this.adapter
 
         viewModel = ViewModelProviders.of(this, ViewModelFactory(this))

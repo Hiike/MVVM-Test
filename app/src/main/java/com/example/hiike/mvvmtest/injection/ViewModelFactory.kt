@@ -1,9 +1,9 @@
 package com.example.hiike.mvvmtest.injection
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.room.Room
-import androidx.appcompat.app.AppCompatActivity
+import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.persistence.room.Room
+import android.support.v7.app.AppCompatActivity
 import com.example.hiike.mvvmtest.model.database.AppDatabase
 import com.example.hiike.mvvmtest.ui.post.PostListViewModel
 import java.lang.IllegalArgumentException

@@ -1,7 +1,7 @@
 package com.example.hiike.mvvmtest.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 
 /**
  * Data classes' main purpose is to hold data.
