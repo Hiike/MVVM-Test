@@ -1,7 +1,7 @@
 package com.example.hiike.mvvmtest.ui.post
 
 import android.arch.lifecycle.MutableLiveData
-import com.example.hiike.mvvmtest.base.BaseViewModel
+import android.arch.lifecycle.ViewModel
 import com.example.hiike.mvvmtest.model.Post
 import com.example.hiike.mvvmtest.model.PostDao
 import com.example.hiike.mvvmtest.network.PostApi
@@ -12,9 +12,7 @@ import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
-class PostListViewModel(private val postDao: PostDao) : BaseViewModel() {
-    @Inject
-    lateinit var postApi: PostApi
+class PostListViewModel @Inject constructor(private val postDao: PostDao, private val postApi: PostApi) : ViewModel() {
 
     private lateinit var subscription: Disposable
 

@@ -6,13 +6,18 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.example.hiike.mvvmtest.R
 import com.example.hiike.mvvmtest.databinding.ActivityPostListBinding
-import com.example.hiike.mvvmtest.injection.ViewModelFactory
+import dagger.android.AndroidInjection
+import dagger.android.support.DaggerAppCompatActivity
+import javax.inject.Inject
 
-class PostListActivity: AppCompatActivity() {
+class PostListActivity: DaggerAppCompatActivity() {
+
+    @Inject
+    lateinit var postListViewModelFactory: PostListViewModelFactory
+
     private lateinit var binding: ActivityPostListBinding
     private lateinit var viewModel: PostListViewModel
 
@@ -22,11 +27,13 @@ class PostListActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        AndroidInjection.inject(this)
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_post_list)
         binding.postList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.postList.adapter = this.adapter
 
-        viewModel = ViewModelProviders.of(this, ViewModelFactory(this))
+        viewModel = ViewModelProviders.of(this, postListViewModelFactory)
                 .get(PostListViewModel::class.java)
         viewModel.errorRetrieve.observe(this, Observer { errorRetrieve ->
             if (errorRetrieve != null && errorRetrieve) {

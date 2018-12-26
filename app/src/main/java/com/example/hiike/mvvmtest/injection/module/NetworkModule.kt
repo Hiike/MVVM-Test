@@ -15,7 +15,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
  */
 @Module
 @Suppress("unused")
-object NetworkModule {
+class NetworkModule {
     /**
      * Provides the Post service implementation.
      * @param retrofit the Retrofit object used to instantiate the service
@@ -23,8 +23,7 @@ object NetworkModule {
      */
     @Provides
     @Reusable
-    @JvmStatic
-    internal fun providePostApi(retrofit: Retrofit): PostApi {
+    fun providePostApi(retrofit: Retrofit): PostApi {
         return retrofit.create(PostApi::class.java)
     }
 
@@ -34,8 +33,7 @@ object NetworkModule {
      */
     @Provides
     @Reusable
-    @JvmStatic
-    internal fun provideRetrofitInterface(): Retrofit {
+    fun provideRetrofitInterface(): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(MoshiConverterFactory.create())

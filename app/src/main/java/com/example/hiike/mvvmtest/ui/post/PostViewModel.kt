@@ -1,10 +1,10 @@
 package com.example.hiike.mvvmtest.ui.post
 
 import android.arch.lifecycle.MutableLiveData
-import com.example.hiike.mvvmtest.base.BaseViewModel
+import android.arch.lifecycle.ViewModel
 import com.example.hiike.mvvmtest.model.Post
 
-class PostViewModel: BaseViewModel() {
+class PostViewModel: ViewModel() {
     private val postTitle = MutableLiveData<String>()
     private val postBody = MutableLiveData<String>()
 
