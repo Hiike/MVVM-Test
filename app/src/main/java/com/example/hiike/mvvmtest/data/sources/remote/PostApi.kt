@@ -1,6 +1,6 @@
-package com.example.hiike.mvvmtest.network
+package com.example.hiike.mvvmtest.data.sources.remote
 
-import com.example.hiike.mvvmtest.model.Post
+import com.example.hiike.mvvmtest.data.Post
 import io.reactivex.Observable
 import retrofit2.http.GET
 

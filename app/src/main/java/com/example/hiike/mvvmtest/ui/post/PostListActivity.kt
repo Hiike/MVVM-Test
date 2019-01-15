@@ -48,6 +48,7 @@ class PostListActivity: DaggerAppCompatActivity() {
             }
         })
         binding.viewModel = viewModel
+        viewModel.loadPosts()
     }
 
     private fun showError(@StringRes errorMessage: Int) {

@@ -2,8 +2,8 @@ package com.example.hiike.mvvmtest.injection.module
 
 import android.app.Application
 import android.arch.persistence.room.Room
-import com.example.hiike.mvvmtest.model.PostDao
-import com.example.hiike.mvvmtest.model.database.AppDatabase
+import com.example.hiike.mvvmtest.data.sources.local.PostDao
+import com.example.hiike.mvvmtest.data.sources.local.AppDatabase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

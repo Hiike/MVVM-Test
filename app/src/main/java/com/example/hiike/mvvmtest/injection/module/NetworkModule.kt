@@ -1,6 +1,6 @@
 package com.example.hiike.mvvmtest.injection.module
 
-import com.example.hiike.mvvmtest.network.PostApi
+import com.example.hiike.mvvmtest.data.sources.remote.PostApi
 import com.example.hiike.mvvmtest.utils.BASE_URL
 import dagger.Module
 import dagger.Provides

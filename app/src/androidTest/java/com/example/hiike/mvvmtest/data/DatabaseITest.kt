@@ -1,10 +1,11 @@
-package com.example.hiike.mvvmtest.model
+package com.example.hiike.mvvmtest.data
 
 import android.arch.persistence.room.Room
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.matcher.ViewMatchers.assertThat
 import android.support.test.runner.AndroidJUnit4
-import com.example.hiike.mvvmtest.model.database.AppDatabase
+import com.example.hiike.mvvmtest.data.sources.local.AppDatabase
+import com.example.hiike.mvvmtest.data.sources.local.PostDao
 import org.hamcrest.CoreMatchers.equalTo
 import org.junit.After
 import org.junit.Before

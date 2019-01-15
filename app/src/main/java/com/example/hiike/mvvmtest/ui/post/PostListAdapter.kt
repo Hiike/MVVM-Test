@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.hiike.mvvmtest.databinding.ItemPostBinding
-import com.example.hiike.mvvmtest.model.Post
+import com.example.hiike.mvvmtest.data.Post
 
 class PostListAdapter : RecyclerView.Adapter<PostListAdapter.ViewHolder>() {
     private lateinit var postList: List<Post>

@@ -1,9 +1,8 @@
-package com.example.hiike.mvvmtest.model.database
+package com.example.hiike.mvvmtest.data.sources.local
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
-import com.example.hiike.mvvmtest.model.Post
-import com.example.hiike.mvvmtest.model.PostDao
+import com.example.hiike.mvvmtest.data.Post
 
 @Database(entities = [Post::class], version = 1)
 abstract class AppDatabase: RoomDatabase() {

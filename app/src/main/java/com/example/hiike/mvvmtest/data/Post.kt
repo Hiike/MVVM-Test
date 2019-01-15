@@ -1,4 +1,4 @@
-package com.example.hiike.mvvmtest.model
+package com.example.hiike.mvvmtest.data
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
