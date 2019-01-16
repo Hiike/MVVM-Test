@@ -3,12 +3,14 @@ package com.example.hiike.mvvmtest.data.sources
 import com.example.hiike.mvvmtest.data.Post
 import com.example.hiike.mvvmtest.data.sources.local.PostDao
 import com.example.hiike.mvvmtest.data.sources.remote.PostApi
+import com.example.hiike.mvvmtest.domain.PostRepository
 import io.reactivex.Observable
 import timber.log.Timber
 import javax.inject.Inject
 
-class PostRepository @Inject constructor(val postApi: PostApi, val postDao: PostDao) {
-    fun getPosts() : Observable<List<Post>> {
+class PostRepositoryImp @Inject constructor(val postApi: PostApi, val postDao: PostDao) : PostRepository {
+
+    override fun getPosts() : Observable<List<Post>> {
         val observableFromApi = getPostFromApi()
         val observableFromDb = getPostFromDb()
         return Observable.concatArrayEager(observableFromApi, observableFromDb)
